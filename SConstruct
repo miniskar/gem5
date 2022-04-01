@@ -365,8 +365,16 @@ if main['GCC'] or main['CLANG']:
     # Treat warnings as errors but white list some warnings that we
     # want to allow (e.g., deprecation warnings).
     main.Append(CCFLAGS=['-Werror',
+                         '-Wno-unused-variable',
                          '-Wno-error=deprecated-declarations',
                          '-Wno-error=deprecated',
+                         '-Wno-error=deprecated-copy',
+                         '-Wno-error=bool-compare',
+                         '-Wno-error=array-bounds',
+                         '-Wno-error=address-of-packed-member',
+                         '-Wno-error=ignored-qualifiers',
+                         '-Wno-error=cast-function-type',
+                         '-Wno-error=class-memaccess',
                         ])
 else:
     print(termcap.Yellow + termcap.Bold + 'Error' + termcap.Normal, end=' ')
@@ -426,7 +434,7 @@ if main['GCC']:
     # assemblers detect this as an error, "Error: expecting string
     # instruction after `rep'"
     as_version_raw = readCommand([main['AS'], '-v', '/dev/null',
-                                  '-o', '/dev/null'],
+                                  '-o', '/tmp/nullas'],
                                  exception=False).split()
 
     # version strings may contain extra distro-specific

@@ -77,3 +77,4 @@ ReturnAddrStack::restore(unsigned top_entry_idx,
 
     addrStack[tos] = restored;
 }
+

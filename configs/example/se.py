@@ -275,6 +275,7 @@ if options.ruby:
             system.cpu[i].interrupts[0].int_slave = ruby_port.master
             system.cpu[i].itb.walker.port = ruby_port.slave
             system.cpu[i].dtb.walker.port = ruby_port.slave
+        system.cpu[i].workload[:].release = "4.15.0"
 else:
     MemClass = Simulation.setMemClass(options)
     system.membus = SystemXBar()
